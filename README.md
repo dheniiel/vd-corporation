@@ -1,5 +1,43 @@
 # VD-Coporation
 
+## Como rodar
+
+```bash
+docker compose up -d --build
+```
+
+- Loja: http://localhost:8081
+- Adminer (banco): http://localhost:8080 — servidor `mariadb-server`, usuário `root`, senha `123`
+
+O banco é criado automaticamente a partir de `database/banco.sql` na primeira inicialização. Se você já tinha subido o projeto antes, rode `docker compose down -v` para recriar o banco.
+
+## Estrutura de pastas
+
+```
+vd-corporation/
+├── Dockerfile
+├── docker-compose.yml
+├── database/
+│   └── banco.sql              # criação das tabelas e dados iniciais
+└── html/                      # raiz do site (montada em /var/www/html)
+    ├── index.php              # login
+    ├── cadastro.php, home.php, vitrine.php, pagamento.php, perfilexi.php ...
+    ├── includes/              # arquivos incluídos pelo PHP (não acessíveis pelo navegador)
+    │   ├── config.php         # credenciais do banco (únicas para todo o projeto)
+    │   ├── connect_db.php     # conexão mysqli
+    │   ├── conexao.php        # conexão PDO
+    │   └── include_session_home.php
+    ├── actions/               # endpoints de processamento (AJAX, login, logout)
+    │   ├── validation.php, logout.php, list.php, editar.php ...
+    └── src/
+        ├── css/
+        ├── js/
+        ├── img/
+        └── fonts/             # coloque aqui a fonte Bombing.ttf
+```
+
+---
+
 **Explorando o Universo da VD Corporation: Uma Visão Profunda de Seu Software de Loja de Roupas**
 
 A VD Corporation, apresenta um software sofisticado e abrangente, projetado para oferecer aos clientes uma jornada de compras online sem precedentes. Conheceremos cada detalhe deste software, explorando suas páginas distintas e funcionalidades inovadoras.
